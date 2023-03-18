@@ -189,6 +189,10 @@ for i in range(0,len(city_list)):
 print("Done!")
 
 
+# the combined way for the above test:test 1 and test 2. 
+
+
+
 # merge the data
 path = "C:/Users/Berti/Desktop/回收数据/"
 merge(path)
