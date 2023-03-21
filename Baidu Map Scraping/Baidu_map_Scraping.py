@@ -190,7 +190,25 @@ print("Done!")
 
 
 # the combined way for the above test:test 1 and test 2. 
-
+Web_scrape = Map_Scrape(header, link, "广东省", "金属")
+check_results = Web_scrape.combine()
+if type(check_results) is list: 
+    for i in range(0,len(check_results)):
+        Web_scrape = Map_Scrape(header, link, check_results[i], "金属")
+        total_dict = Web_scrape.combine()
+        adjust_total_dict = Web_scrape.adjust_info(total_dict)
+        filename = ["name", "location", "address", "province", "city", "area", "detail", 'street_id', "telephone", "uid", "type", "detail_url", "shop_hours"]
+        try:
+            Web_scrape.get_csv(adjust_total_dict, filename)
+        except:
+            filename.append("num")
+            Web_scrape.get_csv(adjust_total_dict, filename)
+    print("Done!")
+else:
+    adjust_total_dict = Web_scrape.adjust_info(check_results)
+    filename = ["name", "location", "address", "province", "city", "area", "detail", 'street_id', "telephone", "uid", "type", "detail_url", "shop_hours"]
+    Web_scrape.get_csv(adjust_total_dict, filename)
+    print("save province dataset!")
 
 
 # merge the data
